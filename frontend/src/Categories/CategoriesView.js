@@ -1,5 +1,6 @@
 import React from 'react'
 import * as Api from '../Utils/api.js'
+import { Link } from 'react-router-dom'
 
 class CategoriesView extends React.Component {
   state = {
@@ -20,7 +21,11 @@ class CategoriesView extends React.Component {
         <p>Select one of the categories bellow to view posts:</p>
         {categories.map((c) =>
           <span style={{ padding: 5 }}>
-            <button className="btn btn-primary">{c.name}</button>
+            <Link
+              className="btn btn-primary"
+              to={`/categories/${c.path}`}>
+              {c.name}
+            </Link>
           </span>
         )}
       </div>
