@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import CategoriesView from '../Categories/CategoriesView'
+import ListPostsView from '../Posts/ListPostsView'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 const NoMatch = ({ location }) => (
@@ -18,7 +19,13 @@ class App extends Component {
           <h1>Readable</h1>
 
           <Switch>
-            <Route path="/" exact component={CategoriesView} />
+            <Route to='/' exact render={props =>
+              <Fragment>
+                <CategoriesView />
+                <br></br>
+                <ListPostsView />
+              </Fragment>
+            } />
             <Route path="/categories/:id" exact></Route>
             <Route component={NoMatch} />
           </Switch>

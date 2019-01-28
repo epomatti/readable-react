@@ -7,3 +7,8 @@ export const getCategories = () =>
   fetch(`${url}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
+
+export const getAllPosts = () =>
+  fetch(`${url}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => data)
