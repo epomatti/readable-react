@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { TiMessage, TiThumbsUp, TiThumbsDown } from 'react-icons/ti/index'
+import { formatDate } from '../Utils/format'
 
 class Post extends React.Component {
   render() {
@@ -8,18 +9,24 @@ class Post extends React.Component {
     return (
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">{post.title} <i>by @{post.author}</i></h5>
+          <h5 className="card-title">{post.title}</h5>
+          <h6>
+            <i>{`by @${post.author} at ${formatDate(post.timestamp)}`}</i>
+          </h6>
           <p className="card-text">{post.body}</p>
-          <div class="row">
-            <div class="col-1">
+          <div className="row">
+            <div className="col-1">
               <TiMessage></TiMessage><span>{post.commentCount}</span>
             </div>
-            <div class="col-2">
+            <div className="col-2">
               <span>Score: {post.voteScore}</span>
             </div>
-            <div class="col-2">
+            <div className="col-2">
               <TiThumbsUp></TiThumbsUp>
               <TiThumbsDown></TiThumbsDown>
+            </div>
+            <div className="col-4">
+              Category: <span className="badge badge-secondary">{post.category}</span>
             </div>
           </div>
         </div>
