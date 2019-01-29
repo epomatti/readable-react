@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react'
 import CategoriesView from '../Categories/CategoriesView'
 import ListPostsView from '../Posts/ListPostsView'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { handleReceiveAllPosts } from '../Posts/actions'
+import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading-bar'
 
 const NoMatch = ({ location }) => (
   <div>
@@ -9,31 +12,39 @@ const NoMatch = ({ location }) => (
     Go back to the <Link to="/">root page</Link>
   </div>
 )
-
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleReceiveAllPosts())
+  }
   render() {
     return (
       <Router>
-        <div className="container">
-
-          <h1>Readable</h1>
-
-          <Switch>
-            <Route to='/' exact render={props =>
-              <Fragment>
-                <CategoriesView />
-                <br></br>
-                <ListPostsView />
-              </Fragment>
-            } />
-            <Route path="/categories/:id" exact></Route>
-            <Route component={NoMatch} />
-          </Switch>
-
-        </div>
+        <Fragment>
+          <LoadingBar />
+          {this.props.loading === true
+            ? null
+            : <div className="container">
+              <h1>Readable</h1>
+              <Switch>
+                <Route to='/' exact render={props =>
+                  <Fragment>
+                    <CategoriesView />
+                    <br></br>
+                    <ListPostsView />
+                  </Fragment>
+                } />
+                <Route path="/categories/:id" exact></Route>
+                <Route component={NoMatch} />
+              </Switch>
+            </div>}
+        </Fragment>
       </Router>
     );
   }
 }
-
-export default App
+function mapStateToProps({ posts }) {
+  return {
+    loading: posts === null
+  }
+}
+export default connect(mapStateToProps)(App)

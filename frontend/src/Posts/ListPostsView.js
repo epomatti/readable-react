@@ -1,29 +1,26 @@
 import React from 'react'
-import * as Api from '../Utils/api.js'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import Post from './Post'
 
 class ListPostsView extends React.Component {
-  state = {
-    posts: []
-  }
-  componentDidMount() {
-    Api.getAllPosts().then((posts) => {
-      this.setState(() => ({
-        posts
-      }))
-    })
-  }
   render() {
-    const { posts } = this.state
+    const { postIds } = this.props
+    console.log(postIds)
     return (
       <div>
         <h3>All Posts</h3>
         <p>A list of all posts in all categories:</p>
-        {posts.map((p) =>
-          <p>{p.id}</p>
+        {postIds.map((id) =>
+          <Post id={id} />
         )}
       </div>
     )
   }
 }
-export default ListPostsView
+function mapStateToProps({ posts }) {
+  //console.log(Object.keys(posts))
+  return {
+    postIds: Object.keys(posts)
+  }
+}
+export default connect(mapStateToProps)(ListPostsView)
