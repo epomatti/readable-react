@@ -20,7 +20,7 @@ class CategoriesView extends React.Component {
         <h3>Categories</h3>
         <p>Select one of the categories bellow to view posts:</p>
         {categories.map((c) =>
-          <span style={{ padding: 5 }}>
+          <span key={c.name} style={{ padding: 5 }}>
             <Link
               className="btn btn-primary"
               to={`/categories/${c.path}`}>
