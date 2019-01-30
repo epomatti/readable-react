@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS } from './actions'
+import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST } from './actions'
 
 export function posts(state = null, action) {
   switch (action.type) {
@@ -6,6 +6,15 @@ export function posts(state = null, action) {
       return {
         ...state,
         ...Object.assign({}, ...action.posts.map(post => ({ [post.id]: post })))
+      }
+    case UPVOTE_POST:
+      return {
+        ...state,
+        ...action.post
+      }
+    case DOWNVOTE_POST:
+      return {
+        ...state
       }
     default:
       return state

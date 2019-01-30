@@ -3,6 +3,8 @@ const headers = {
   'Accept': 'application/json',
   'Authorization': 'standalone_token'
 }
+
+// Initial Data
 export const getCategories = () =>
   fetch(`${url}/categories`, { headers })
     .then(res => res.json())
@@ -22,3 +24,20 @@ export function getInitialData() {
     posts,
   }))
 }
+
+// Votes
+export const upvotePost = () => votePost('upVote')
+
+export const downvotePost = () => votePost('downVote')
+
+const votePost = (option) =>
+  fetch(`${url}/posts`,
+    {
+      headers,
+      method: 'post',
+      body: JSON.stringify(option)
+    })
+    .then(res => res.json())
+    .then(data => data)
+
+
