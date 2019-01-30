@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { handleInitialData } from '../Utils/actions'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
+import NavBar from '../NavBar/NavBar'
 
 const NoMatch = ({ location }) => (
   <div>
@@ -25,12 +26,10 @@ class App extends Component {
           {loading === true
             ? null
             : <div className="container">
-              <h1>Readable</h1>
+              <NavBar />
               <Switch>
                 <Route path='/' exact render={() =>
                   <Fragment>
-                    <CategoriesView />
-                    <br></br>
                     <ListPostsView />
                   </Fragment>
                 } />

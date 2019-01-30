@@ -18,7 +18,6 @@ class ListPostsView extends React.Component {
     const { sortBy } = this.state
     let { posts } = this.props
     const itemClass = 'dropdown-item'
-    console.log(posts)
     posts = Object.values(posts)
       .sort((a, b) => b[sortBy] - a[sortBy])
     return (
