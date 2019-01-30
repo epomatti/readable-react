@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import CategoriesView from '../Categories/CategoriesView'
 import ListPostsView from '../Posts/ListPostsView'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import { handleReceiveAllPosts } from '../Posts/actions'
+import { handleInitialData } from '../Utils/actions'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
 
@@ -14,7 +14,7 @@ const NoMatch = ({ location }) => (
 )
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(handleReceiveAllPosts())
+    this.props.dispatch(handleInitialData())
   }
   render() {
     return (
@@ -42,9 +42,9 @@ class App extends Component {
     );
   }
 }
-function mapStateToProps({ posts }) {
+function mapStateToProps({ categories, posts }) {
   return {
-    loading: posts === null
+    loading: categories === null || posts === null
   }
 }
 export default connect(mapStateToProps)(App)

@@ -1,25 +1,15 @@
 import React from 'react'
-import * as Api from '../Utils/api.js'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class CategoriesView extends React.Component {
-  state = {
-    categories: []
-  }
-  componentDidMount() {
-    Api.getCategories().then((categories) => {
-      this.setState(() => ({
-        categories
-      }))
-    })
-  }
   render() {
-    const { categories } = this.state
+    const { categories } = this.props
     return (
       <div>
         <h3>Categories</h3>
         <p>Select one of the categories bellow to view posts:</p>
-        {categories.map((c) =>
+        {Object.values(categories).map((c) =>
           <span key={c.name} style={{ padding: 5 }}>
             <Link
               className="btn btn-primary"
@@ -32,4 +22,9 @@ class CategoriesView extends React.Component {
     )
   }
 }
-export default CategoriesView
+function mapStateToProps({ categories }) {
+  return {
+    categories
+  }
+}
+export default connect(mapStateToProps)(CategoriesView)

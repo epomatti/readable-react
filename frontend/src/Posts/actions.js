@@ -1,21 +1,8 @@
-import * as Api from '../Utils/api'
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 
-export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS'
-
-export const receiveAllPosts = (posts) => {
+export const receivePosts = (posts) => {
   return {
-    type: RECEIVE_ALL_POSTS,
+    type: RECEIVE_POSTS,
     posts
-  }
-}
-export function handleReceiveAllPosts() {
-  return (dispatch) => {
-    dispatch(showLoading())
-    return Api.getAllPosts()
-      .then((posts) => {
-        dispatch(receiveAllPosts(posts))
-        dispatch(hideLoading())
-      })
   }
 }

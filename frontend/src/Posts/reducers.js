@@ -1,8 +1,8 @@
-import { RECEIVE_ALL_POSTS } from './actions'
+import { RECEIVE_POSTS } from './actions'
 
 export function posts(state = null, action) {
   switch (action.type) {
-    case RECEIVE_ALL_POSTS:
+    case RECEIVE_POSTS:
       return {
         ...state,
         ...Object.assign({}, ...action.posts.map(post => ({ [post.id]: post })))

@@ -12,3 +12,13 @@ export const getAllPosts = () =>
   fetch(`${url}/posts`, { headers })
     .then(res => res.json())
     .then(data => data)
+
+export function getInitialData() {
+  return Promise.all([
+    getCategories(),
+    getAllPosts(),
+  ]).then(([categories, posts]) => ({
+    categories,
+    posts,
+  }))
+}
