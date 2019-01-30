@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import CategoriesView from '../Categories/CategoriesView'
 import ListPostsView from '../Posts/ListPostsView'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { handleInitialData } from '../Utils/actions'
@@ -28,11 +27,7 @@ class App extends Component {
             : <div className="container">
               <NavBar />
               <Switch>
-                <Route path='/' exact render={() =>
-                  <Fragment>
-                    <ListPostsView />
-                  </Fragment>
-                } />
+                <Route path='/' exact component={ListPostsView} />
                 {Object.values(categories).map((c) =>
                   <Route key={c.name} path={`/${c.path}`} exact></Route>
                 )}

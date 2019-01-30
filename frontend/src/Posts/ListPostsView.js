@@ -22,8 +22,6 @@ class ListPostsView extends React.Component {
       .sort((a, b) => b[sortBy] - a[sortBy])
     return (
       <div>
-        <h3>All Posts</h3>
-        <p>A list of all posts in all categories:</p>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
