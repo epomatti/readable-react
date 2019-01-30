@@ -17,23 +17,26 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
+    const { loading, categories } = this.props
     return (
       <Router>
         <Fragment>
           <LoadingBar />
-          {this.props.loading === true
+          {loading === true
             ? null
             : <div className="container">
               <h1>Readable</h1>
               <Switch>
-                <Route to='/' exact render={props =>
+                <Route path='/' exact render={() =>
                   <Fragment>
                     <CategoriesView />
                     <br></br>
                     <ListPostsView />
                   </Fragment>
                 } />
-                <Route path="/categories/:id" exact></Route>
+                {Object.values(categories).map((c) =>
+                  <Route key={c.name} path={`/${c.path}`} exact></Route>
+                )}
                 <Route component={NoMatch} />
               </Switch>
             </div>}
@@ -44,7 +47,8 @@ class App extends Component {
 }
 function mapStateToProps({ categories, posts }) {
   return {
-    loading: categories === null || posts === null
+    loading: categories === null || posts === null,
+    categories
   }
 }
 export default connect(mapStateToProps)(App)

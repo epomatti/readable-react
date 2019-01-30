@@ -13,7 +13,7 @@ class CategoriesView extends React.Component {
           <span key={c.name} style={{ padding: 5 }}>
             <Link
               className="btn btn-primary"
-              to={`/categories/${c.path}`}>
+              to={`/${c.path}`}>
               {c.name}
             </Link>
           </span>
