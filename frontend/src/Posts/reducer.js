@@ -5,7 +5,7 @@ export function posts(state = null, action) {
     case RECEIVE_ALL_POSTS:
       return {
         ...state,
-        ...action.posts
+        ...Object.assign({}, ...action.posts.map(post => ({ [post.id]: post })))
       }
     default:
       return state
