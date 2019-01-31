@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'popper.js'
 import 'jquery'
+import './index.css'
 import App from './App/App'
 import * as serviceWorker from './serviceWorker'
 import { createStore, compose } from 'redux';

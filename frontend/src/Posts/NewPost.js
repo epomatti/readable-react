@@ -30,7 +30,8 @@ class NewPost extends React.Component {
     const { categories } = this.props
     const { title, body, author, category } = this.state
     return (
-      <div className="container">
+      <div>
+        <h1 class="mt-4">New Post</h1>
         <form>
           <div className="form-group">
             <label>Title</label>

@@ -6,7 +6,7 @@ class CategoryView extends React.Component {
   render() {
     const { category, postsByCategory } = this.props
     return (
-      <div className="container">
+      <div>
         <h1>{category}</h1>
         <ListPostsView postsByCategory={postsByCategory} />
       </div>

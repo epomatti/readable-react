@@ -26,18 +26,20 @@ class App extends Component {
           <LoadingBar />
           {loading === true
             ? null
-            : <div className="container">
+            : <div>
               <NavBar />
-              <Switch>
-                <Route path='/' exact component={ListPostsView} />
-                {Object.values(categories).map((c) =>
-                  <Route key={c.name} path={`/${c.path}`} render={() =>
-                    <CategoryView category={c.name} />
-                  } exact></Route>
-                )}
-                <Route path='/new' exact component={NewPost} />
-                <Route component={NoMatch} />
-              </Switch>
+              <div className="container my-custom-container">
+                <Switch>
+                  <Route path='/' exact component={ListPostsView} />
+                  {Object.values(categories).map((c) =>
+                    <Route key={c.name} path={`/${c.path}`} render={() =>
+                      <CategoryView category={c.name} />
+                    } exact></Route>
+                  )}
+                  <Route path='/new' exact component={NewPost} />
+                  <Route component={NoMatch} />
+                </Switch>
+              </div>
             </div>}
         </Fragment>
       </Router>
