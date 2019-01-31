@@ -1,25 +1,30 @@
 import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST } from './actions'
 
-export function posts(state = null, action) {
+export function posts(posts = null, action) {
   switch (action.type) {
     case RECEIVE_POSTS:
       return {
-        ...state,
+        ...posts,
         ...fromArrayToObject(action.posts)
       }
     case UPVOTE_POST:
       return {
-        ...state,
-        ...fromArrayToObject(Object.values(state).map((p) => p.id === action.post.id ? action.post : p))
+        ...posts,
+        ...arrayPostScore(posts, action.post)
       }
     case DOWNVOTE_POST:
       return {
-        ...state,
-        ...fromArrayToObject(Object.values(state).map((p) => p.id === action.post.id ? action.post : p))
+        ...posts,
+        ...arrayPostScore(posts, action.post)
       }
     default:
-      return state
+      return posts
   }
+}
+
+function arrayPostScore(posts, post) {
+  return fromArrayToObject(Object.values(posts)
+    .map((p) => p.id === post.id ? post : p))
 }
 
 function fromArrayToObject(posts) {

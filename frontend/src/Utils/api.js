@@ -1,7 +1,8 @@
 const url = 'http://localhost:3001'
 const headers = {
   'Accept': 'application/json',
-  'Authorization': 'standalone_token'
+  'Authorization': 'standalone_token',
+  'Content-Type': 'application/json'
 }
 
 // Initial Data
@@ -33,10 +34,7 @@ export const downvotePost = (id) => votePost(id, 'downVote')
 const votePost = (id, option) =>
   fetch(`${url}/posts/${id}`, {
     method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: JSON.stringify({ option })
   })
     .then(res => res.json())
