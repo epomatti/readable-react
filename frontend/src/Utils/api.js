@@ -51,3 +51,38 @@ const votePost = (id, option) =>
   })
     .then(res => res.json())
     .then(data => data)
+
+// Comments
+export const getCommentsByPost = (id) =>
+  fetch(`${url}/posts/${id}`, { headers })
+    .then(res => res.json())
+    .then(data => data.categories)
+
+export const addComment = (comment) =>
+  fetch(`${url}/comments`, {
+    method: 'post',
+    headers,
+    body: JSON.stringify(comment)
+  })
+    .then(res => res.json())
+    .then(data => data)
+
+export const getComment = (id) =>
+  fetch(`${url}/comments/${id}`, { headers })
+    .then(res => res.json())
+    .then(data => data.categories)
+
+export const updateComment = (comment) =>
+  fetch(`${url}/comments/${id}`, {
+    method: 'put',
+    headers,
+    body: JSON.stringify(comment)
+  })
+    .then(res => res.json())
+    .then(data => data)
+
+export const deleteComment = (comment) =>
+  fetch(`${url}/comments/${id}`, {
+    method: 'delete',
+    headers
+  })
