@@ -37,6 +37,18 @@ export const addPost = (post) =>
     .then(res => res.json())
     .then(data => data)
 
+export const addPost = (post) =>
+  fetch(`${url}/posts/${post.id}`, {
+    method: 'put',
+    headers,
+    body: JSON.stringify(post)
+  })
+
+export const deletePost = (id) =>
+  fetch(`${url}/posts/${id}`, {
+    method: 'delete',
+    headers
+  })
 
 // Votes
 export const upvotePost = (id) => votePost(id, 'upVote')
@@ -73,7 +85,7 @@ export const getComment = (id) =>
     .then(data => data.categories)
 
 export const updateComment = (comment) =>
-  fetch(`${url}/comments/${id}`, {
+  fetch(`${url}/comments/${comment.id}`, {
     method: 'put',
     headers,
     body: JSON.stringify(comment)
@@ -81,7 +93,7 @@ export const updateComment = (comment) =>
     .then(res => res.json())
     .then(data => data)
 
-export const deleteComment = (comment) =>
+export const deleteComment = (id) =>
   fetch(`${url}/comments/${id}`, {
     method: 'delete',
     headers
