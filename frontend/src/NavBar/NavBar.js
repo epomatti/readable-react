@@ -9,7 +9,7 @@ class NavBar extends React.Component {
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark" >
         <Link className="navbar-brand" to="/">
-        <img src={logo} width="32" height="32" className="d-inline-block align-top" alt="" />
+          <img src={logo} width="32" height="32" className="d-inline-block align-top" alt="" />
           Readable
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,8 +30,11 @@ class NavBar extends React.Component {
             )}
           </ul>
           <form className="form-inline my-2 my-lg-0">
-          <button className="btn btn-success my-2 my-sm-0" type="submit">New Post</button>
-        </form>
+            <Link
+              className="btn btn-success my-2 my-sm-0"
+              type="submit"
+              to="/new">New Post</Link>
+          </form>
         </div>
       </nav>
     )

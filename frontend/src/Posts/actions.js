@@ -1,8 +1,10 @@
 import * as Api from '../Utils/api'
+const uuid = require('uuid/v1');
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const UPVOTE_POST = 'UPVOTE_POST'
 export const DOWNVOTE_POST = 'DOWNVOTE_POST'
+export const ADD_POST = 'ADD_POST'
 
 export function receivePosts(posts) {
   return {
@@ -11,7 +13,7 @@ export function receivePosts(posts) {
   }
 }
 
-export function upvote(post) {
+function upvote(post) {
   return {
     type: UPVOTE_POST,
     post
@@ -25,7 +27,7 @@ export const handleToggleUpvote = (id) => {
   }
 }
 
-export function downvote(post) {
+function downvote(post) {
   return {
     type: DOWNVOTE_POST,
     post
@@ -36,5 +38,23 @@ export const handleToggleDownvote = (id) => {
   return (dispatch) => {
     return Api.downvotePost(id)
       .then((post) => dispatch(downvote(post)))
+  }
+}
+
+function addPost(post) {
+  return {
+    type: ADD_POST,
+    post
+  }
+}
+
+export const handleAddPost = (post) => {
+  return (dispatch) => {
+    return Api.addPost({
+      ...post,
+      id: uuid(),
+      timestamp: Date.now()
+    })
+      .then((post) => dispatch(addPost(post)))
   }
 }

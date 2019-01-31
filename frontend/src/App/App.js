@@ -5,6 +5,7 @@ import { handleInitialData } from '../Utils/actions'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
 import NavBar from '../NavBar/NavBar'
+import NewPost from '../Posts/NewPost'
 
 const NoMatch = ({ location }) => (
   <div>
@@ -31,6 +32,7 @@ class App extends Component {
                 {Object.values(categories).map((c) =>
                   <Route key={c.name} path={`/${c.path}`} exact></Route>
                 )}
+                <Route path='/new' exact component={NewPost} />
                 <Route component={NoMatch} />
               </Switch>
             </div>}
