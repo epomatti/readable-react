@@ -3,7 +3,6 @@ import ListPostsView from '../Posts/ListPostsView'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { handleInitialData } from '../Utils/actions'
 import { connect } from 'react-redux'
-import LoadingBar from 'react-redux-loading-bar'
 import NavBar from '../NavBar/NavBar'
 import NewPost from '../Posts/NewPost'
 import CategoryView from '../Categories/CategoryView'
@@ -23,7 +22,6 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
           {loading === true
             ? null
             : <div>
