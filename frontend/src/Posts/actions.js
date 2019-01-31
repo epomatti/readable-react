@@ -11,16 +11,17 @@ export function receivePosts(posts) {
   }
 }
 
-export function upvote(id) {
+export function upvote(post) {
   return {
     type: UPVOTE_POST,
-    id
+    post
   }
 }
 
-export const handleUpvote = (id) => {
+export const handleToggleUpvote = (id) => {
   return (dispatch) => {
     return Api.upvotePost(id)
+      .then((post) => dispatch(upvote(post)))
   }
 }
 

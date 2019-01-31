@@ -10,7 +10,7 @@ export function posts(state = null, action) {
     case UPVOTE_POST:
       return {
         ...state,
-        ...action.post
+        posts: state.posts.map((p) => p.id === action.post.id ? action.post : p)
       }
     case DOWNVOTE_POST:
       return {

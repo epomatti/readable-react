@@ -9,7 +9,7 @@ class NavBar extends React.Component {
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark" >
         <Link className="navbar-brand" to="/">
-        <img src={logo} width="32" height="32" class="d-inline-block align-top" alt="" />
+        <img src={logo} width="32" height="32" className="d-inline-block align-top" alt="" />
           Readable
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

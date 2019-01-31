@@ -26,12 +26,12 @@ export function getInitialData() {
 }
 
 // Votes
-export const upvotePost = () => votePost('upVote')
+export const upvotePost = (id) => votePost(id, 'upVote')
 
-export const downvotePost = () => votePost('downVote')
+export const downvotePost = (id) => votePost(id, 'downVote')
 
-const votePost = (option) =>
-  fetch(`${url}/posts`,
+const votePost = (id, option) =>
+  fetch(`${url}/posts/${id}`,
     {
       headers,
       method: 'post',
