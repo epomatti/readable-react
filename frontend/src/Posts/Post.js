@@ -2,13 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { TiMessage, TiThumbsUp, TiThumbsDown } from 'react-icons/ti/index'
 import { formatDate } from '../Utils/format'
-import { handleToggleUpvote } from './actions'
+import { handleToggleUpvote, handleToggleDownvote } from './actions'
 
 class Post extends React.Component {
   handleUpvote = (e) => {
     e.preventDefault()
     const { dispatch, post } = this.props
     dispatch(handleToggleUpvote(post.id))
+  }
+  handleDownvote = (e) => {
+    e.preventDefault()
+    const { dispatch, post } = this.props
+    dispatch(handleToggleDownvote(post.id))
   }
   render() {
     const { post } = this.props
@@ -31,7 +36,9 @@ class Post extends React.Component {
               <button onClick={this.handleUpvote}>
                 <TiThumbsUp />
               </button>
-              <TiThumbsDown></TiThumbsDown>
+              <button onClick={this.handleDownvote}>
+                <TiThumbsDown />
+              </button>
             </div>
             <div className="col-4">
               Category: <span className="badge badge-secondary">{post.category}</span>

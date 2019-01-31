@@ -25,9 +25,16 @@ export const handleToggleUpvote = (id) => {
   }
 }
 
-export function downvote(id) {
+export function downvote(post) {
   return {
     type: DOWNVOTE_POST,
-    id
+    post
+  }
+}
+
+export const handleToggleDownvote = (id) => {
+  return (dispatch) => {
+    return Api.downvotePost(id)
+      .then((post) => dispatch(downvote(post)))
   }
 }

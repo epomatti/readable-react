@@ -14,7 +14,8 @@ export function posts(state = null, action) {
       }
     case DOWNVOTE_POST:
       return {
-        ...state
+        ...state,
+        ...fromArrayToObject(Object.values(state).map((p) => p.id === action.post.id ? action.post : p))
       }
     default:
       return state
