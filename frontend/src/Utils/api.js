@@ -31,13 +31,13 @@ export const upvotePost = (id) => votePost(id, 'upVote')
 export const downvotePost = (id) => votePost(id, 'downVote')
 
 const votePost = (id, option) =>
-  fetch(`${url}/posts/${id}`,
-    {
-      headers,
-      method: 'post',
-      body: JSON.stringify(option)
-    })
+  fetch(`${url}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option })
+  })
     .then(res => res.json())
     .then(data => data)
-
-

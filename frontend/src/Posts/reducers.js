@@ -5,12 +5,12 @@ export function posts(state = null, action) {
     case RECEIVE_POSTS:
       return {
         ...state,
-        ...Object.assign({}, ...action.posts.map(post => ({ [post.id]: post })))
+        ...fromArrayToObject(action.posts)
       }
     case UPVOTE_POST:
       return {
         ...state,
-        posts: state.posts.map((p) => p.id === action.post.id ? action.post : p)
+        ...fromArrayToObject(Object.values(state).map((p) => p.id === action.post.id ? action.post : p))
       }
     case DOWNVOTE_POST:
       return {
@@ -19,4 +19,8 @@ export function posts(state = null, action) {
     default:
       return state
   }
+}
+
+function fromArrayToObject(posts) {
+  return Object.assign({}, ...posts.map(post => ({ [post.id]: post })))
 }
