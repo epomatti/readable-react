@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
 import NavBar from '../NavBar/NavBar'
 import NewPost from '../Posts/NewPost'
+import CategoryView from '../Categories/CategoryView'
 
 const NoMatch = ({ location }) => (
   <div>
@@ -30,7 +31,9 @@ class App extends Component {
               <Switch>
                 <Route path='/' exact component={ListPostsView} />
                 {Object.values(categories).map((c) =>
-                  <Route key={c.name} path={`/${c.path}`} exact></Route>
+                  <Route key={c.name} path={`/${c.path}`} render={() =>
+                    <CategoryView category={c.name} />
+                  } exact></Route>
                 )}
                 <Route path='/new' exact component={NewPost} />
                 <Route component={NoMatch} />

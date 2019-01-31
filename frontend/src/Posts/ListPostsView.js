@@ -50,9 +50,9 @@ class ListPostsView extends React.Component {
     )
   }
 }
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts }, { postsByCategory }) {
   return {
-    posts
+    posts: postsByCategory ? postsByCategory : posts
   }
 }
 export default connect(mapStateToProps)(ListPostsView)
