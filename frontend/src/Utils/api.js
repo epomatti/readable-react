@@ -37,7 +37,7 @@ export const addPost = (post) =>
     .then(res => res.json())
     .then(data => data)
 
-export const addPost = (post) =>
+export const updatePost = (post) =>
   fetch(`${url}/posts/${post.id}`, {
     method: 'put',
     headers,

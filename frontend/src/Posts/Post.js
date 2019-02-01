@@ -3,17 +3,18 @@ import { connect } from 'react-redux'
 import { TiMessage, TiThumbsUp, TiThumbsDown } from 'react-icons/ti/index'
 import { formatDate } from '../Utils/format'
 import { handleToggleUpvote, handleToggleDownvote } from './actions'
+import { downvotePost } from '../Utils/api';
 
 class Post extends React.Component {
   handleUpvote = (e) => {
     e.preventDefault()
-    const { dispatch, post } = this.props
-    dispatch(handleToggleUpvote(post.id))
+    const { upvote, post } = this.props
+    upvote(post.id)
   }
   handleDownvote = (e) => {
     e.preventDefault()
-    const { dispatch, post } = this.props
-    dispatch(handleToggleDownvote(post.id))
+    const { downvote, post } = this.props
+    downvote(post.id)
   }
   render() {
     const { post } = this.props
@@ -55,4 +56,10 @@ function mapStateToProps({ posts }, { id }) {
     post
   }
 }
-export default connect(mapStateToProps)(Post)
+function mapDispatchToProps(dispatch) {
+  return {
+    upvote: (id) => dispatch(handleToggleUpvote(id)),
+    downvote: (id) => dispatch(handleToggleDownvote(id))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
