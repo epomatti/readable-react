@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST, ADD_POST } from './actions'
+import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST, ADD_POST, UPDATE_POST } from './actions'
 
 export function posts(posts = null, action) {
   switch (action.type) {
@@ -21,6 +21,17 @@ export function posts(posts = null, action) {
       return {
         ...posts,
         ...fromArrayToObject(Object.values(posts).concat([action.post]))
+      }
+    case UPDATE_POST:
+      return {
+        ...posts,
+        [action.post.id]: {
+          ...posts[action.post.id],
+          [action.post.id]: {
+            title: action.post.title,
+            body: action.post.body
+          }
+        }
       }
     default:
       return posts

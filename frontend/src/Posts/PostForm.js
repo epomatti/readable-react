@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { handleAddPost } from './actions'
+import { handleAddPost, handleUpdatePost } from './actions'
 
-class NewPost extends React.Component {
+class PostForm extends React.Component {
   state = {
     title: '',
     body: '',
@@ -11,7 +11,6 @@ class NewPost extends React.Component {
   }
   componentDidMount() {
     const { post } = this.props
-    // todo
     if (post) {
       this.setState({
         ...post
@@ -22,16 +21,22 @@ class NewPost extends React.Component {
     this.setState({ [name]: event.target.value })
   }
   submit = (e) => {
-    const { dispatch } = this.props
+    const { dispatch, match } = this.props
     e.preventDefault()
-    dispatch(handleAddPost(this.state))
+    match
+      ? dispatch(handleUpdatePost(this.state))
+      : dispatch(handleAddPost({
+        title: this.state.title,
+        body: this.state.body
+      }))
   }
   render() {
-    const { categories } = this.props
+    const { categories, post } = this.props
     const { title, body, author, category } = this.state
+    const viewTitle = post ? "Edit Post" : "New post"
     return (
       <div>
-        <h1 class="mt-4">New Post</h1>
+        <h1 className="mt-4">{viewTitle}</h1>
         <form>
           <div className="form-group">
             <label>Title</label>
@@ -62,9 +67,10 @@ class NewPost extends React.Component {
     )
   }
 }
-function mapStateToProps({ categories }) {
+function mapStateToProps({ categories, posts }, { match }) {
   return {
-    categories
+    categories,
+    post: match.params.id ? Object.values(posts).filter(p => p.id === match.params.id)[0] : null
   }
 }
-export default connect(mapStateToProps)(NewPost)
+export default connect(mapStateToProps)(PostForm)

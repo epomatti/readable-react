@@ -5,6 +5,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const UPVOTE_POST = 'UPVOTE_POST'
 export const DOWNVOTE_POST = 'DOWNVOTE_POST'
 export const ADD_POST = 'ADD_POST'
+export const UPDATE_POST = 'UPDATE_POST'
 
 export function receivePosts(posts) {
   return {
@@ -48,6 +49,13 @@ function addPost(post) {
   }
 }
 
+function updatePost(post) {
+  return {
+    type: ADD_POST,
+    post
+  }
+}
+
 export const handleAddPost = (post) => {
   return (dispatch) => {
     return Api.addPost({
@@ -56,5 +64,14 @@ export const handleAddPost = (post) => {
       timestamp: Date.now()
     })
       .then((post) => dispatch(addPost(post)))
+  }
+}
+
+export const handleUpdatePost = (post) => {
+  return (dispatch) => {
+    return Api.updatePost({
+      ...post
+    })
+      .then((post) => dispatch(updatePost(post)))
   }
 }

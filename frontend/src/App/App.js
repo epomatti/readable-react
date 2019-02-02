@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { handleInitialData } from '../Utils/actions'
 import { connect } from 'react-redux'
 import NavBar from '../NavBar/NavBar'
-import NewPost from '../Posts/NewPost'
+import PostForm from '../Posts/PostForm'
 import CategoryView from '../Categories/CategoryView'
 
 const NoMatch = ({ location }) => (
@@ -34,7 +34,8 @@ class App extends Component {
                       <CategoryView category={c.name} />
                     } exact></Route>
                   )}
-                  <Route path='/new' exact component={NewPost} />
+                  <Route path='/new' exact component={PostForm} />
+                  <Route path='/edit/:id' exact component={PostForm} />
                   <Route component={NoMatch} />
                 </Switch>
               </div>

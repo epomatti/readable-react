@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { TiMessage, TiThumbsUp, TiThumbsDown } from 'react-icons/ti/index'
 import { formatDate } from '../Utils/format'
 import { handleToggleUpvote, handleToggleDownvote } from './actions'
-import { downvotePost } from '../Utils/api';
 
 class Post extends React.Component {
   handleUpvote = (e) => {
