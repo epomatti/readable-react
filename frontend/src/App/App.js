@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import NavBar from '../NavBar/NavBar'
 import PostForm from '../Posts/PostForm'
 import CategoryView from '../Categories/CategoryView'
+import PostDetailsView from '../Posts/PostDetailsView'
 
 const NoMatch = ({ location }) => (
   <div>
@@ -36,6 +37,7 @@ class App extends Component {
                   )}
                   <Route path='/new' exact component={PostForm} />
                   <Route path='/edit/:id' exact component={PostForm} />
+                  <Route path='/posts/:id' exact component={PostDetailsView} />
                   <Route component={NoMatch} />
                 </Switch>
               </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { TiMessage, TiThumbsUp, TiThumbsDown } from 'react-icons/ti/index'
 import { formatDate } from '../Utils/format'
 import { handleToggleUpvote, handleToggleDownvote } from './actions'
+import { Link } from 'react-router-dom'
 
 class Post extends React.Component {
   handleUpvote = (e) => {
@@ -18,6 +19,7 @@ class Post extends React.Component {
   render() {
     const { post } = this.props
     return (
+
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">{post.title}</h5>
@@ -40,12 +42,17 @@ class Post extends React.Component {
                 <TiThumbsDown />
               </button>
             </div>
-            <div className="col-4">
+            <div className="col-3">
               Category: <span className="badge badge-secondary">{post.category}</span>
             </div>
+            <div className="col-2">
+              <Link className="btn btn-info" to="/posts/:id" >Details</Link>
+            </div>
+
           </div>
         </div>
       </div>
+
     )
   }
 }
