@@ -6,6 +6,7 @@ export const UPVOTE_POST = 'UPVOTE_POST'
 export const DOWNVOTE_POST = 'DOWNVOTE_POST'
 export const ADD_POST = 'ADD_POST'
 export const UPDATE_POST = 'UPDATE_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 export function receivePosts(posts) {
   return {
@@ -56,6 +57,13 @@ function updatePost(post) {
   }
 }
 
+function deletePost(id) {
+  return {
+    type: DELETE_POST,
+    id
+  }
+}
+
 export const handleAddPost = (post) => {
   return (dispatch) => {
     return Api.addPost({
@@ -73,5 +81,12 @@ export const handleUpdatePost = (post) => {
       ...post
     })
       .then((post) => dispatch(updatePost(post)))
+  }
+}
+
+export const handleDeletePost = (id) => {
+  return (dispatch) => {
+    return Api.deletePost(id)
+      .then((id) => dispatch(deletePost(id)))
   }
 }

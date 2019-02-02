@@ -48,7 +48,8 @@ export const deletePost = (id) =>
   fetch(`${url}/posts/${id}`, {
     method: 'delete',
     headers
-  })
+  }).then(res => res.json())
+    .then(data => data)
 
 // Votes
 export const upvotePost = (id) => votePost(id, 'upVote')

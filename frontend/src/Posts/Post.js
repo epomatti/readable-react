@@ -46,9 +46,8 @@ class Post extends React.Component {
               Category: <span className="badge badge-secondary">{post.category}</span>
             </div>
             <div className="col-2">
-              <Link className="btn btn-info" to="/posts/:id" >Details</Link>
+              <Link className="btn btn-info" to={`/posts/${post.id}`} >Details</Link>
             </div>
-
           </div>
         </div>
       </div>
