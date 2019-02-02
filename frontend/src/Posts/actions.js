@@ -51,7 +51,7 @@ function addPost(post) {
 
 function updatePost(post) {
   return {
-    type: ADD_POST,
+    type: UPDATE_POST,
     post
   }
 }

@@ -23,12 +23,13 @@ class PostForm extends React.Component {
   submit = (e) => {
     const { dispatch, match } = this.props
     e.preventDefault()
-    match
-      ? dispatch(handleUpdatePost(this.state))
-      : dispatch(handleAddPost({
+    match.params.id
+      ? dispatch(handleUpdatePost({
+        id: this.state.id,
         title: this.state.title,
         body: this.state.body
       }))
+      : dispatch(handleAddPost(this.state))
   }
   render() {
     const { categories, post } = this.props
