@@ -24,7 +24,7 @@ class PostDetailsView extends React.Component {
           <button className="btn btn-danger" onClick={e => this.deletePost(e)}>Delete</button>
         </div>
         <h2>Comments</h2>
-        <AddComment parenetId={id} />
+        <AddComment parentId={id} />
       </div>
     )
   }
