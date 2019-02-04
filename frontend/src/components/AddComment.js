@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleAddComment } from '../actions/comments'
+import { handleAddComment, handleReceiveComments } from '../actions/comments'
 
 function mapDispatchToProps(dispatch) {
   return {
-    addComment: (comment) => dispatch(handleAddComment(comment))
+    addComment: (comment) => dispatch(handleAddComment(comment)),
+    receiveComments: (parentId) => dispatch(handleReceiveComments(parentId))
   };
 }
 
@@ -19,8 +20,9 @@ class AddComment extends Component {
   onAddComment = (e) => {
     e.preventDefault()
     const { text, author } = this.state
-    const { addComment, parentId } = this.props
+    const { addComment, receiveComments, parentId } = this.props
     addComment({ text, author, parentId })
+    receiveComments(parentId)
     this.resetState()
   }
   resetState = () => {

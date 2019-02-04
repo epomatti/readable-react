@@ -26,7 +26,13 @@ class Comments extends Component {
     return (
       <div>
         {comments
-          ? comments.map(c => (<Comment key={c.id} id={c.id} parentId={c.parentId} />))
+          ? comments.map(c => (
+            <Comment
+              key={c.id}
+              id={c.id}
+              parentId={c.parentId}
+              reload={this.loadComments} />
+          ))
           : (<span>No comments for this post yet. Be the first!</span>)}
       </div>
     );

@@ -19,10 +19,14 @@ class PostDetailsView extends React.Component {
         <h1>Post Details</h1>
         <Post id={id} />
         <div className="col-1">
-          <Link className="btn btn-warning" to={`/edit/${id}`} >Edit</Link>
+          <Link
+            className="btn btn-warning"
+            to={`/edit/${id}`} >Edit</Link>
         </div>
         <div className="col-1">
-          <button className="btn btn-danger" onClick={e => this.deletePost(e)}>Delete</button>
+          <button
+            className="btn btn-danger"
+            onClick={e => this.deletePost(e)}>Delete</button>
         </div>
         <h2>Comments</h2>
         <Comments parentId={id} />
@@ -33,7 +37,7 @@ class PostDetailsView extends React.Component {
 }
 function mapStateToProps({ posts }, { match }) {
   return {
-    id: Object.values(posts).filter(p => p.id === match.params.id)[0].id
+    id: Object.values(posts).find(p => p.id === match.params.id).id
   }
 }
 export default connect(mapStateToProps)(PostDetailsView)
