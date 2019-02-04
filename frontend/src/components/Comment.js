@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import utils from '../Utils/util';
 
-function mapStateToProps({ comments }, { id }) {
+function mapStateToProps({ comments }, { id, parentId }) {
   return {
-    comment: utils.find(id, comments)
+    comment: comments[parentId].find(c => c.id === id)
   }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    // todo
-  };
 }
 
 class Comment extends Component {

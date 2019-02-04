@@ -14,11 +14,11 @@ function addComment(comment) {
 
 export const handleAddComment = (comment) => {
   return (dispatch) => {
-    return Api.addComment(comment)
-      .then(c => dispatch(addComment({
-        id: uuid(),
-        ...c
-      })))
+    return Api.addComment({
+      id: uuid(),
+      ...comment
+    })
+      .then(c => dispatch(addComment(c)))
   }
 }
 
@@ -33,9 +33,9 @@ function receiveComments(parentId, comments) {
 export const handleReceiveComments = (parentId) => {
   return (dispatch) => {
     return Api.getCommentsByPost(parentId)
-      .then(comments => dispatch(receiveComments({
+      .then(comments => dispatch(receiveComments(
         parentId,
         comments
-      })))
+      )))
   }
 }
