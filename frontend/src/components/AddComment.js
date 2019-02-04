@@ -36,7 +36,7 @@ class AddComment extends Component {
     return (
       <form>
         <div className="row">
-          <div className="col-8">
+          <div className="col-9">
             <div className="form-group">
               <input
                 value={author}
