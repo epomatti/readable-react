@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Post from './Post'
 import { Link } from 'react-router-dom'
 import { handleDeletePost } from './actions'
+import AddComment from '../components/AddComment';
 
 class PostDetailsView extends React.Component {
   deletePost = (e) => {
@@ -22,6 +23,8 @@ class PostDetailsView extends React.Component {
         <div className="col-1">
           <button className="btn btn-danger" onClick={e => this.deletePost(e)}>Delete</button>
         </div>
+        <h2>Comments</h2>
+        <AddComment parenetId={id} />
       </div>
     )
   }

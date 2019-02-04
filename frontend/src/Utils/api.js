@@ -67,9 +67,9 @@ const votePost = (id, option) =>
 
 // Comments
 export const getCommentsByPost = (id) =>
-  fetch(`${url}/posts/${id}`, { headers })
+  fetch(`${url}/posts/${id}/comments`, { headers })
     .then(res => res.json())
-    .then(data => data.categories)
+    .then(data => data)
 
 export const addComment = (comment) =>
   fetch(`${url}/comments`, {
