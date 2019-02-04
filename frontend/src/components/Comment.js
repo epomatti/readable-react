@@ -24,12 +24,20 @@ class Comment extends Component {
     receiveComments(comment.parentId)
   }
   render() {
-    const { author, text, id } = this.props.comment
+    const { body, id } = this.props.comment
     return (
-      <div>
-        {`${author} said "${text}" about this post.`}
-        <button className="btn btn-danger btn-sm" onClick={e => this.onDeleteComment(e)}>Delete</button>
-        <EditComment />
+      <div className="card">
+        <div className="card-body">
+          <div className="row">
+            <div className="col-10">
+              {body}
+            </div>
+            <button
+              className="btn btn-outline-danger btn-sm"
+              onClick={e => this.onDeleteComment(e)}>Delete</button>
+            <EditComment />
+          </div>
+        </div>
       </div>
     );
   }

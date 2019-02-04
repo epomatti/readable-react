@@ -1,4 +1,4 @@
-import { ADD_COMMENT, RECEIVE_COMMENTS, DELETE_COMMENT } from '../actions/comments'
+import { ADD_COMMENT, RECEIVE_COMMENTS, DELETE_COMMENT, UPDATE_COMMENT } from '../actions/comments'
 
 export function comments(comments = {}, action) {
   switch (action.type) {
@@ -16,6 +16,10 @@ export function comments(comments = {}, action) {
       return {
         ...comments,
         ...comments[action.comment.parentId].filter(c => c.id !== action.comment.id)
+      }
+    case UPDATE_COMMENT:
+      return {
+        ...comments
       }
     default:
       return comments
