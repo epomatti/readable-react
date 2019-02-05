@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { handleUpdateComment } from '../actions/comments'
+import { handleUpdateComment, handleReceiveComments } from '../actions/comments'
 
 function mapStateToProps(state, { comment }) {
   return {
@@ -10,7 +10,8 @@ function mapStateToProps(state, { comment }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateComment: (c) => dispatch(handleUpdateComment(c))
+    updateComment: (c) => dispatch(handleUpdateComment(c)),
+    receiveComments: (parentId) => dispatch(handleReceiveComments(parentId))
   };
 }
 
@@ -26,11 +27,11 @@ class EditComment extends Component {
     this.setState({ body: e.target.value })
   }
   onUpdateComment = (e) => {
-    e.preventDefault()
     const { parentId, id } = this.props.comment
-    const { updateComment } = this.props
+    const { updateComment, receiveComments } = this.props
     const { body } = this.state
     updateComment({ body, parentId, id })
+    receiveComments(parentId)
   }
   componentDidMount() {
     const { author, body, parentId } = this.props.comment
@@ -71,7 +72,7 @@ class EditComment extends Component {
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary" onClick={e => this.onUpdateComment(e)}>Save changes</button>
+                    <button type="button" className="btn btn-primary" onClick={e => this.onUpdateComment(e)}>Save changes</button>
                   </div>
                 </form>
               </div>
