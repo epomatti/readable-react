@@ -67,7 +67,7 @@ function updateComment(comment) {
 export const handleUpdateComment = (comment) => {
   return (dispatch) => {
     dispatch(updateComment(comment))
-    Api.updateComment(comment.id)
-      .catch(dispatch(addComment(comment)))
+    Api.updateComment(comment)
+      .then(c => dispatch(updateComment(c)))
   }
 }

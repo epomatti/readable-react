@@ -24,7 +24,7 @@ class Comment extends Component {
     receiveComments(comment.parentId)
   }
   render() {
-    const { body, id } = this.props.comment
+    const { body } = this.props.comment
     return (
       <div className="card">
         <div className="card-body">
@@ -35,7 +35,7 @@ class Comment extends Component {
             <button
               className="btn btn-outline-danger btn-sm"
               onClick={e => this.onDeleteComment(e)}>Delete</button>
-            <EditComment />
+            <EditComment comment={this.props.comment} />
           </div>
         </div>
       </div>
