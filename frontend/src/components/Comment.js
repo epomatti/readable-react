@@ -24,7 +24,7 @@ class Comment extends Component {
     receiveComments(comment.parentId)
   }
   render() {
-    const { body, id } = this.props.comment
+    const { body } = this.props.comment
     return (
       <div className="card">
         <div className="card-body">

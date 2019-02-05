@@ -42,7 +42,8 @@ export const updatePost = (post) =>
     method: 'put',
     headers,
     body: JSON.stringify(post)
-  })
+  }).then(res => res.json())
+    .then(data => data)
 
 export const deletePost = (id) =>
   fetch(`${url}/posts/${id}`, {

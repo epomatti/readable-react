@@ -25,13 +25,7 @@ export function posts(posts = null, action) {
     case UPDATE_POST:
       return {
         ...posts,
-        [action.post.id]: {
-          ...posts[action.post.id],
-          [action.post.id]: {
-            title: action.post.title,
-            body: action.post.body
-          }
-        }
+        [action.post.id]: { ...action.post }
       }
     case DELETE_POST:
       return {
