@@ -19,7 +19,8 @@ export function comments(comments = {}, action) {
       }
     case UPDATE_COMMENT:
       return {
-        ...comments
+        ...comments,
+        ...comments[action.comment.parentId].filter(c => c.id !== action.comment.id).concat(action.comment)
       }
     default:
       return comments

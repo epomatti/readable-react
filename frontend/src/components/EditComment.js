@@ -1,37 +1,50 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { handleUpdateComment } from '../actions/comments'
+import { handleUpdateComment, handleReceiveComments } from '../actions/comments'
 
-function mapStateToProps(state, { command }) {
+function mapStateToProps(state, { comment }) {
   return {
-
+    comment: state.comments[comment.parentId].find(c => c.id === comment.id)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateComent: (c) => dispatch(handleUpdateComment(c))
+    updateComment: (c) => dispatch(handleUpdateComment(c)),
+    receiveComments: (parentId) => dispatch(handleReceiveComments(parentId))
   };
 }
 
 class EditComment extends Component {
   state = {
     author: '',
-    text: ''
+    body: ''
   }
   onChangeAuthor = (e) => {
     this.setState({ author: e.target.value })
   }
   onChangeText = (e) => {
-    this.setState({ text: e.target.value })
+    this.setState({ body: e.target.value })
   }
   onUpdateComment = (e) => {
-    e.preventDeafult()
-    const { dispatch , updateComment} = this.props
-    dispatch(updateComment(this.value))
+    const { parentId, id } = this.props.comment
+    const { updateComment, receiveComments } = this.props
+    const { body } = this.state
+    updateComment({ body, parentId, id })
+    receiveComments(parentId)
+  }
+  componentDidMount() {
+    const { author, body, parentId } = this.props.comment
+    this.setState(
+      {
+        author,
+        body,
+        parentId
+      }
+    )
   }
   render() {
-    const { author, text } = this.state
+    const { author, body } = this.state
     return (
       <Fragment>
         <button type="button" className="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
@@ -55,11 +68,11 @@ class EditComment extends Component {
                   </div>
                   <div className="form-group">
                     <label>Text</label>
-                    <input className="form-control" value={text} onChange={e => this.onChangeText(e)} />
+                    <input className="form-control" value={body} onChange={e => this.onChangeText(e)} />
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary">Save changes</button>
+                    <button type="button" className="btn btn-primary" onClick={e => this.onUpdateComment(e)}>Save changes</button>
                   </div>
                 </form>
               </div>

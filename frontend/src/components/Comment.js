@@ -35,7 +35,7 @@ class Comment extends Component {
             <button
               className="btn btn-outline-danger btn-sm"
               onClick={e => this.onDeleteComment(e)}>Delete</button>
-            <EditComment />
+            <EditComment comment={this.props.comment} />
           </div>
         </div>
       </div>
