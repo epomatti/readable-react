@@ -6,7 +6,6 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 
-
 function addComment(comment) {
   return {
     type: ADD_COMMENT,
