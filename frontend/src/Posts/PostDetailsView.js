@@ -14,8 +14,17 @@ class PostDetailsView extends React.Component {
   }
   render() {
     const { id } = this.props
+    if (id === null) {
+      return (
+        <div>
+          <h3>Post not found</h3>
+          Go back to the <Link to="/">root page</Link>
+        </div>
+      )
+    }
     return (
       <div>
+
         <h1>Post Details</h1>
         <Post id={id} />
         <div className="col-1">
@@ -36,8 +45,9 @@ class PostDetailsView extends React.Component {
   }
 }
 function mapStateToProps({ posts }, { match }) {
+  const post = Object.values(posts).find(p => p.id === match.params.id)
   return {
-    id: Object.values(posts).find(p => p.id === match.params.id).id
+    id: post ? post.id : null
   }
 }
 export default connect(mapStateToProps)(PostDetailsView)
