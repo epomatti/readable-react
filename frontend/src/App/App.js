@@ -37,7 +37,7 @@ class App extends Component {
                   )}
                   <Route path='/new' exact component={PostForm} />
                   <Route path='/edit/:id' exact component={PostForm} />
-                  <Route path='/posts/:id' exact component={PostDetailsView} />
+                  <Route path='/:category/:id' exact component={PostDetailsView} />
                   <Route component={NoMatch} />
                 </Switch>
               </div>

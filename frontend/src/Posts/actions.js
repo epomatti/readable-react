@@ -7,6 +7,7 @@ export const DOWNVOTE_POST = 'DOWNVOTE_POST'
 export const ADD_POST = 'ADD_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const RECEIVE_POST = 'RECEIVE_POST'
 
 export function receivePosts(posts) {
   return {
@@ -57,10 +58,17 @@ function updatePost(post) {
   }
 }
 
-function deletePost(id) {
+function deletePost(post) {
   return {
     type: DELETE_POST,
-    id
+    post
+  }
+}
+
+export const handleDeletePost = (id) => {
+  return (dispatch) => {
+    return Api.deletePost(id)
+      .then((post) => dispatch(deletePost(post)))
   }
 }
 
@@ -84,9 +92,16 @@ export const handleUpdatePost = (post) => {
   }
 }
 
-export const handleDeletePost = (id) => {
+function receivePost(post) {
+  return {
+    type: RECEIVE_POST,
+    post
+  }
+}
+
+export const handleReceivePost = (id) => {
   return (dispatch) => {
-    return Api.deletePost(id)
-      .then((id) => dispatch(deletePost(id)))
+    return Api.getPost(id)
+      .then((post) => dispatch(receivePost(post)))
   }
 }

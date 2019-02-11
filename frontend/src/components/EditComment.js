@@ -4,7 +4,7 @@ import { handleUpdateComment, handleReceiveComments } from '../actions/comments'
 
 function mapStateToProps(state, { comment }) {
   return {
-    comment: state.comments[comment.parentId].find(c => c.id === comment.id)
+    //comment: state.comments[comment.parentId].find(c => c.id === comment.id)
   };
 }
 
@@ -45,17 +45,18 @@ class EditComment extends Component {
   }
   render() {
     const { author, body } = this.state
+    const { id } = this.props.comment
     return (
       <Fragment>
-        <button type="button" className="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+        <button type="button" className="btn btn-outline-warning btn-sm" data-toggle="modal" data-target={`#modalCenter${id}`}>
           Edit
         </button>
 
-        <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal fade" id={`modalCenter${id}`} tabIndex="-1" role="dialog" aria-labelledby={`#modalCenterTitle${id}`} aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalCenterTitle">Comment Edit</h5>
+                <h5 className="modal-title" id={`#modalCenter${id}`}>Comment Edit</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

@@ -4,6 +4,7 @@ import { TiMessage, TiThumbsUp, TiThumbsDown } from 'react-icons/ti/index'
 import { formatDate } from '../Utils/format'
 import { handleToggleUpvote, handleToggleDownvote } from './actions'
 import { Link } from 'react-router-dom'
+import { handleDeletePost } from './actions'
 
 class Post extends React.Component {
   handleUpvote = (e) => {
@@ -15,6 +16,11 @@ class Post extends React.Component {
     e.preventDefault()
     const { downvote, post } = this.props
     downvote(post.id)
+  }
+  onDelete = (e) => {
+    e.preventDefault()
+    const { deletePost, post } = this.props
+    deletePost(post.id)
   }
   render() {
     const { post } = this.props
@@ -42,11 +48,17 @@ class Post extends React.Component {
                 <TiThumbsDown />
               </button>
             </div>
-            <div className="col-3">
-              Category: <span className="badge badge-secondary">{post.category}</span>
-            </div>
             <div className="col-2">
-              <Link className="btn btn-info" to={`/posts/${post.id}`} >Details</Link>
+              <h5><span className="badge badge-secondary">{post.category}</span></h5>
+            </div>
+            <div className="col-5">
+              <Link className="btn btn-info" to={`/${post.category}/${post.id}`} >Details</Link>
+              <Link
+                className="btn btn-warning"
+                to={`/edit/${post.id}`} >Edit</Link>
+              <button
+                className="btn btn-danger"
+                onClick={e => this.onDelete(e)}>Delete</button>
             </div>
           </div>
         </div>
@@ -64,7 +76,8 @@ function mapStateToProps({ posts }, { id }) {
 function mapDispatchToProps(dispatch) {
   return {
     upvote: (id) => dispatch(handleToggleUpvote(id)),
-    downvote: (id) => dispatch(handleToggleDownvote(id))
+    downvote: (id) => dispatch(handleToggleDownvote(id)),
+    deletePost: (id) => dispatch(handleDeletePost(id))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

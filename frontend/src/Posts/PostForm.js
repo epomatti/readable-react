@@ -27,7 +27,8 @@ class PostForm extends React.Component {
       ? dispatch(handleUpdatePost({
         id: this.state.id,
         title: this.state.title,
-        body: this.state.body
+        body: this.state.body,
+        category: this.state.category
       }))
       : dispatch(handleAddPost(this.state))
   }

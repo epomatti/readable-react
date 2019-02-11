@@ -22,7 +22,7 @@ class Comments extends Component {
     receiveComments(parentId)
   }
   render() {
-    const { comments } = this.props
+    const { comments, refresh } = this.props
     return (
       <div>
         {comments
@@ -31,7 +31,8 @@ class Comments extends Component {
               key={c.id}
               id={c.id}
               parentId={c.parentId}
-              reload={this.loadComments} />
+              reload={this.loadComments}
+              refresh={refresh} />
           ))
           : (<span>No comments for this post yet. Be the first!</span>)}
       </div>

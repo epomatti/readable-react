@@ -52,6 +52,13 @@ export const deletePost = (id) =>
   }).then(res => res.json())
     .then(data => data)
 
+// Posts
+export const getPost = (id) =>
+  fetch(`${url}/posts/${id}`, { headers })
+    .then(res => res.json())
+    .then(data => data)
+
+
 // Votes
 export const upvotePost = (id) => votePost(id, 'upVote')
 
@@ -100,3 +107,16 @@ export const deleteComment = (id) =>
     method: 'delete',
     headers
   })
+
+export const upvoteComment = (id) => voteComment(id, 'upVote')
+
+export const downvoteComment = (id) => voteComment(id, 'downVote')
+
+const voteComment = (id, option) =>
+  fetch(`${url}/comments/${id}`, {
+    method: 'post',
+    headers,
+    body: JSON.stringify({ option })
+  })
+    .then(res => res.json())
+    .then(data => data)

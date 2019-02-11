@@ -44,7 +44,7 @@ class ListPostsView extends React.Component {
           </div>
         </div>
         {posts.map((post) =>
-          <Post key={post.id} id={post.id} />
+          post !== undefined ? <Post key={post.id} id={post.id} /> : null
         )}
       </div>
     )

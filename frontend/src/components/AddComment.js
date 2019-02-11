@@ -14,6 +14,9 @@ class AddComment extends Component {
     text: '',
     author: ''
   }
+  onAuthorChange = (e) => {
+    this.setState({ author: e.target.value })
+  }
   onTextChange = (e) => {
     this.setState({ text: e.target.value })
   }
@@ -21,7 +24,9 @@ class AddComment extends Component {
     e.preventDefault()
     const { text, author } = this.state
     const { addComment, receiveComments, parentId } = this.props
-    addComment({ text, author, parentId })
+    const body = text
+    const timestamp = Date.now()
+    addComment({ parentId, timestamp, body, author })
     receiveComments(parentId)
     this.resetState()
   }
@@ -45,7 +50,7 @@ class AddComment extends Component {
                     type="text"
                     className="form-control"
                     placeholder="Your name"
-                    onChange={(e) => this.onTextChange(e)} />
+                    onChange={(e) => this.onAuthorChange(e)} />
                 </div>
                 <div className="form-group">
                   <textarea

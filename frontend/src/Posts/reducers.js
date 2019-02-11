@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST, ADD_POST, UPDATE_POST, DELETE_POST } from './actions'
+import { RECEIVE_POSTS, UPVOTE_POST, DOWNVOTE_POST, ADD_POST, UPDATE_POST, DELETE_POST, RECEIVE_POST } from './actions'
 
 export function posts(posts = null, action) {
   switch (action.type) {
@@ -30,7 +30,12 @@ export function posts(posts = null, action) {
     case DELETE_POST:
       return {
         ...posts,
-        ...fromArrayToObject(Object.values(posts).filter(p => p.id !== action.id))
+        [action.post.id]: undefined
+      }
+    case RECEIVE_POST:
+      return {
+        ...posts,
+        [action.post.id]: { ...action.post }
       }
     default:
       return posts

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
 import { Link } from 'react-router-dom'
-import { handleDeletePost } from './actions'
+import { handleDeletePost, handleReceivePost } from './actions'
 import AddComment from '../components/AddComment';
 import Comments from '../components/Comments'
 
@@ -11,6 +11,10 @@ class PostDetailsView extends React.Component {
     const { id, dispatch } = this.props
     e.preventDefault()
     dispatch(handleDeletePost(id))
+  }
+  refresh = () => {
+    const { id, dispatch } = this.props
+    dispatch(handleReceivePost(id))
   }
   render() {
     const { id } = this.props
@@ -24,21 +28,10 @@ class PostDetailsView extends React.Component {
     }
     return (
       <div>
-
         <h1>Post Details</h1>
         <Post id={id} />
-        <div className="col-1">
-          <Link
-            className="btn btn-warning"
-            to={`/edit/${id}`} >Edit</Link>
-        </div>
-        <div className="col-1">
-          <button
-            className="btn btn-danger"
-            onClick={e => this.deletePost(e)}>Delete</button>
-        </div>
         <h2>Comments</h2>
-        <Comments parentId={id} />
+        <Comments parentId={id} refresh={() => this.refresh()} />
         <AddComment parentId={id} />
       </div>
     )

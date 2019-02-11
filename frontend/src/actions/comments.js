@@ -5,6 +5,8 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+export const UPVOTE_COMMENT = 'UPVOTE_COMMENT'
+export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT'
 
 function addComment(comment) {
   return {
@@ -68,5 +70,33 @@ export const handleUpdateComment = (comment) => {
     dispatch(updateComment(comment))
     Api.updateComment(comment)
       .then(c => dispatch(updateComment(c)))
+  }
+}
+
+function upvoteComment(comment) {
+  return {
+    type: UPVOTE_COMMENT,
+    comment
+  }
+}
+
+export const handleUpvoteComment = (id) => {
+  return (dispatch) => {
+    Api.upvoteComment(id)
+      .then(c => dispatch(upvoteComment(c)))
+  }
+}
+
+function downvoteComment(comment) {
+  return {
+    type: DOWNVOTE_COMMENT,
+    comment
+  }
+}
+
+export const handleDownvoteComment = (id) => {
+  return (dispatch) => {
+    Api.downvoteComment(id)
+      .then(c => dispatch(downvoteComment(c)))
   }
 }
