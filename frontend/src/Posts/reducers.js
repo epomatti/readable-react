@@ -29,8 +29,7 @@ export function posts(posts = null, action) {
       }
     case DELETE_POST:
       return {
-        ...posts,
-        [action.post.id]: undefined
+        ...fromArrayToObject(Object.values(posts).filter(p => p.id !== action.post.id))
       }
     case RECEIVE_POST:
       return {
