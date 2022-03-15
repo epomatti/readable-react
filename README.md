@@ -9,7 +9,7 @@ To get started developing right away:
 ### Install the Server
 
 * Install and start the API server
-    - `cd api-server`
+ - `cd api-server`
     - `npm install`
     - `node server`
 
