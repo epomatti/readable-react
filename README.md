@@ -16,6 +16,7 @@ npm install --prefix api-server
 node api-server/server
 
 # frontend
+cp frontend/.config/localhost.env frontend/.env
 npm install --prefix frontend
 npm start --prefix frontend
 ```
