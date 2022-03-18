@@ -27,33 +27,37 @@ class Post extends React.Component {
     return (
 
       <div className="card">
-        <div className="card-body">
+        <div className="card-body" style={{ marginLeft: 20, marginRight: -20 }}>
           <h5 className="card-title">{post.title}</h5>
           <h6>
             <i>{`by @${post.author} at ${formatDate(post.timestamp)}`}</i>
           </h6>
           <p className="card-text">{post.body}</p>
           <div className="row">
-            <div className="col-1">
+            <div className="col-1" style={{ marginTop: 5 }}>
               <TiMessage></TiMessage><span>{post.commentCount}</span>
             </div>
-            <div className="col-2">
+            <div className="col-2" style={{ marginTop: 5 }}>
               <span>Score: {post.voteScore}</span>
             </div>
-            <div className="col-2">
-              <button onClick={this.handleUpvote}>
+            <div  >
+              <button className="btn btn-default btn-lg" style={{ padding: "0px 0px 0px 0px", margin: "0px 0px 0px 0px" }} onClick={this.handleUpvote}>
                 <TiThumbsUp />
               </button>
-              <button onClick={this.handleDownvote}>
+              <button className="btn btn-default btn-lg" style={{ padding: "0px 0px 0px 0px", margin: "0px 50px 0px 8px" }} onClick={this.handleDownvote}>
                 <TiThumbsDown />
               </button>
             </div>
-            <div className="col-2">
+            <div className="col-2" style={{ marginTop: 5 }}>
               <h5><span className="badge badge-secondary">{post.category}</span></h5>
             </div>
             <div className="col-5">
-              <Link className="btn btn-info" to={`/${post.category}/${post.id}`} >Details</Link>
               <Link
+                style={{ marginRight: 2 }}
+                className="btn btn-info"
+                to={`/${post.category}/${post.id}`} >Details</Link>
+              <Link
+                style={{ marginRight: 2 }}
                 className="btn btn-warning"
                 to={`/edit/${post.id}`} >Edit</Link>
               <button

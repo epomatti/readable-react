@@ -1,22 +1,23 @@
-# Readable
+# React Readable
 
-My implementation of the Readable App for Udacity React Course.
+My implementation of the Readable App for Udacity React Course certification.
 
-## Start Developing
+<img src=".docs/demo.png" width=300>
 
-To get started developing right away:
+<hr>
 
-### Install the Server
+## Getting started
 
-* Install and start the API server
- - `cd api-server`
-    - `npm install`
-    - `node server`
+You should only need Node.js to start the app:
 
-### Install the Frontend
-* Install and start the Frontend
-    - `cd frontend`
-    - `npm install`
-    - `npm start`
+```bash
+# api
+npm install --prefix api-server
+node api-server/server
 
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+# frontend
+npm install --prefix frontend
+npm start --prefix frontend
+```
+
+Application should be available locally at http://localhost:3000

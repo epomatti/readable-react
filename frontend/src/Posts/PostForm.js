@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleAddPost, handleUpdatePost } from './actions'
 
@@ -42,15 +43,15 @@ class PostForm extends React.Component {
         <form>
           <div className="form-group">
             <label>Title</label>
-            <input type="text" className="form-control" value={title} onChange={e => this.changeField('title', e)} />
+            <input type="text" className="form-control" placeholder='Give a nice title for your post' value={title} onChange={e => this.changeField('title', e)} />
           </div>
           <div className="form-group">
             <label >Body</label>
-            <textarea className="form-control" rows="3" value={body} onChange={e => this.changeField('body', e)} />
+            <textarea className="form-control" placeholder='The content of your post' rows="3" value={body} onChange={e => this.changeField('body', e)} />
           </div>
           <div className="form-group">
             <label >Author</label>
-            <input type="text" className="form-control" value={author} onChange={e => this.changeField('author', e)} />
+            <input type="text" className="form-control" placeholder='Creator' value={author} onChange={e => this.changeField('author', e)} />
           </div>
           <div className="form-group">
             <label>Select the Category</label>
@@ -62,7 +63,12 @@ class PostForm extends React.Component {
             </select>
           </div>
           <div>
-            <button type="submit" className="btn btn-primary" onClick={e => this.submit(e)}>Submit</button>
+            <button type="submit" className="btn btn-primary" style={{ paddingLeft: 20, paddingRight: 20 }} onClick={e => this.submit(e)}>Submit</button>
+            <Link
+              className="btn btn-secondary"
+              style={{ marginLeft: 5 }}
+              type="submit"
+              to="/">Cancel</Link>
           </div>
         </form>
       </div >

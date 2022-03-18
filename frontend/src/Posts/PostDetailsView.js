@@ -28,11 +28,17 @@ class PostDetailsView extends React.Component {
     }
     return (
       <div>
-        <h1>Post Details</h1>
-        <Post id={id} />
-        <h2>Comments</h2>
-        <Comments parentId={id} refresh={() => this.refresh()} />
-        <AddComment parentId={id} />
+        <h1 style={{ marginTop: 30 }}>Post Details</h1>
+        <div style={{ marginTop: 30 }}>
+          <Post id={id} />
+        </div>
+        <h2 style={{ marginTop: 20 }}>Comments</h2>
+        <div style={{ marginTop: 20 }}>
+          <Comments parentId={id} refresh={() => this.refresh()} />
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <AddComment parentId={id} />
+        </div>
       </div>
     )
   }

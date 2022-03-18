@@ -25,6 +25,7 @@ class ListPostsView extends React.Component {
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
+            style={{ marginTop: 20 }}
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -44,7 +45,10 @@ class ListPostsView extends React.Component {
           </div>
         </div>
         {posts.map((post) =>
-          post !== undefined ? <Post key={post.id} id={post.id} /> : null
+          post !== undefined ?
+            <div style={{ marginTop: 20 }}>
+              <Post key={post.id} id={post.id} />
+            </div> : null
         )}
       </div>
     )

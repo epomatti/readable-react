@@ -46,10 +46,10 @@ class Comment extends Component {
         <div className="card-body">
           <div className="row">
             <div className="col-1">
-              <button onClick={e => this.onUpvoteComment(e)}>
+              <button className="btn btn-default btn-lg" style={{ padding: 0 }} onClick={e => this.onUpvoteComment(e)}>
                 <TiThumbsUp />
               </button>
-              <button onClick={e => this.onDownvoteComment(e)}>
+              <button className="btn btn-default btn-lg" style={{ padding: 0 }} onClick={e => this.onDownvoteComment(e)}>
                 <TiThumbsDown />
               </button>
             </div>
@@ -59,10 +59,12 @@ class Comment extends Component {
             <div className="col-7">
               {body}
             </div>
-            <button
-              className="btn btn-outline-danger btn-sm"
-              onClick={e => this.onDeleteComment(e)}>Delete</button>
-            <EditComment comment={this.props.comment} />
+            <div>
+              <button
+                className="btn btn-outline-danger btn-sm"
+                onClick={e => this.onDeleteComment(e)}>Delete</button>
+              <EditComment comment={this.props.comment} />
+            </div>
           </div>
         </div>
       </div>
